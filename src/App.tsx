@@ -1,16 +1,41 @@
 import React from "react";
+import NavBar from "./components/common/NavBar";
+import NavBarItem from "./models/NavBarItem";
 
 
 const App = () => {
+  const sampleNavLinks: NavBarItem[] = [
+    new NavBarItem({
+      Title: "Home",
+      SubItems: [
+        new NavBarItem({ Title: "Dashboard" }),
+        new NavBarItem({ Title: "Analytics" }),
+      ],
+    }),
+    new NavBarItem({
+      Title: "About",
+      SubItems: [
+        new NavBarItem({ Title: "Team" }),
+        new NavBarItem({ Title: "Company" }),
+      ],
+    }),
+    new NavBarItem({
+      Title: "Services",
+      SubItems: [
+        new NavBarItem({ Title: "Web Development" }),
+        new NavBarItem({ Title: "App Development" }),
+      ],
+    }),
+    new NavBarItem({
+      Title: "Services",
+    }),
+  ];
+
+
   return (
-    <div className="flex space-x-3">
-      <button className="btn">Button</button>
-      <button className="btn btn-neutral">Neutral</button>
-      <button className="btn btn-primary">Primary</button>
-      <button className="btn btn-secondary">Secondary</button>
-      <button className="btn btn-accent">Accent</button>
-      <button className="btn btn-ghost">Ghost</button>
-      <button className="btn btn-link">Link</button>
+    <div>
+      <NavBar title="Test" links={sampleNavLinks}/>
+      
     </div>
   );
 };
