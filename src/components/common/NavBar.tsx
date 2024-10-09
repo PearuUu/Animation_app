@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import NavBarItem from "../../models/NavBarItem";
+import ThemeController from "./ThemeController";
 
 interface NavBarProps {
   title: string;
@@ -27,6 +28,8 @@ export default class NavBar extends Component<NavBarProps> {
           </li>
         ));
     }
+
+    
 
   render() {
     const { title, links } = this.props;
@@ -66,7 +69,7 @@ export default class NavBar extends Component<NavBarProps> {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          <ThemeController/>
         </div>
       </div>
     );
