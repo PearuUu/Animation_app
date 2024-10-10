@@ -34,7 +34,7 @@ const App = () => {
 
   return (
     <div>
-      <NavBar title="Test" links={sampleNavLinks}/>
+      <NavBar title="Animation App" links={sampleNavLinks}/>
       
     </div>
   );
