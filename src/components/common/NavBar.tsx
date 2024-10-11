@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import NavBarItem from "../../models/NavBarItem";
 import ThemeController from "./ThemeController";
+import { Link } from "react-router-dom";
 
 interface NavBarProps {
   title: string;
@@ -17,13 +18,13 @@ export default class NavBar extends Component<NavBarProps> {
                 <ul>
                   {link.SubItems.map((item: NavBarItem, subIndex: number) => (
                     <li key={subIndex}>
-                      <a>{item.Title}</a>
+                      <Link to={item.Path}>{item.Title}</Link>
                     </li>
                   ))}
                 </ul>
               </details>
             ) : (
-              <a>{link.Title}</a>
+              <Link to={link.Path}>{link.Title}</Link>
             )}
           </li>
         ));
@@ -61,7 +62,7 @@ export default class NavBar extends Component<NavBarProps> {
               {this.GenerateNavLinks(links)}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">{title}</a>
+          <Link to="/" className="btn btn-ghost text-xl">{title}</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
