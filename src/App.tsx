@@ -9,10 +9,10 @@ const App = () => {
 
 
   return (
-    <div className="min-h-screen flex flex-col justify-between flex-grow">
+    <div className="min-h-screen flex flex-col justify-between flex-grow items-center">
       <NavBar title="Animation App" links={tabs} />
       
-        <Outlet />
+      <Outlet />
       
 
       <Footer />
