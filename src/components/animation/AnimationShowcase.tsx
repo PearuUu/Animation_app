@@ -1,35 +1,111 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import { useSpring, animated, ControllerUpdate } from "@react-spring/web";
+import PropertyInput from "./PropertySlider";
+import Button, { ButtonType } from "../common/Button";
 
 interface Props {
   title: string;
-  animationProps?: object;
+  animationConfig: ControllerUpdate;
 }
 
-export default class AnimationShowcase extends Component<Props> {
-  render() {
-    const { title } = this.props;
 
-    return (
-      <div className="flex flex-col gap-3">
-        <span className="font-semibold text-lg">{title}</span>
-        <div className="flex w-2/3 gap-3">
-          <input
-            type="range"
-            min={0}
-            max="100"
-            defaultValue="40"
-            className="range"
-          />
+type NestedObject = {
+  [key: string]: number | NestedObject;
+};
 
-          <span>Value</span>
-        </div>
-        <div className="flex flex-col gap-5 w-full">
-          <div className="size-40 bg-secondary rounded-md flex items-center justify-center text-white font-bold">
-            Animation
+const AnimationShowcase: React.FC<Props> = ({ title, animationConfig }) => {
+  const [config, setConfig] = useState<ControllerUpdate>(animationConfig)
+
+  const [springs, api] = useSpring(() => config.from);
+
+
+  const handleRun = () => {
+    api.start(config as object);
+  };
+
+  const handleReset = () => {
+    api.start({ from: { ...config.from } });
+  }
+
+  const handleInputChange = (path: string[], value: number) => {
+    const newData = { ...config };
+    let current: object | number = newData;
+
+
+
+    for (let i = 0; i < path.length - 1; i++) {
+      current = (current as NestedObject)[path[i]] as NestedObject;
+
+    }
+
+    (current as NestedObject)[path[path.length - 1]] = value;
+    setConfig(newData);
+    api.start({ from: { ...config.from } });
+  };
+
+
+  const renderInputs = (obj: ControllerUpdate, path: string[] = []) => {
+    return Object.entries(obj).map(([key, value]) => {
+      if (typeof value === "number") {
+        return (
+          <div key={key} className="py-1 ml-10">
+            
+            <PropertyInput
+              key={key}
+              value={value}
+              onChange={(value) => handleInputChange([...path, key], value)}
+              min={0}
+              max={500}
+              step={1}
+              title={key}
+            />
+
           </div>
-          <button className="btn btn-primary  w-40">Run animation</button>
+        );
+      } else if (typeof value === "object") {
+        return (
+          <div key={key} className="ml-10">
+            <span className="text-lg font-semibold">{key}</span>
+            {renderInputs(value, [...path, key])}
+          </div>
+        );
+      }
+      return null;
+    });
+  };
+
+  return (
+    <div className="flex flex-row gap-3">
+      <div className="flex flex-col gap-5 w-1/2">
+        <span className="font-semibold text-xl text-secondary">{title}</span>
+        <div className="flex items-center h-full">
+          <animated.div style={springs} className="size-40">
+            <div className="size-full bg-secondary rounded-md flex items-center justify-center text-white font-bold">
+              Animation
+            </div>
+          </animated.div>
         </div>
       </div>
-    );
-  }
-}
+
+      <div className="w-1/2 flex flex-col gap-3">
+        <div className="flex flex-col w-full gap-3">{renderInputs(config)}</div>
+
+        <div className="pt-5 flex gap-3 ml-10">
+
+          <Button
+            type={ButtonType.Primary}
+            text="Run"
+            onClick={handleRun}/>
+
+          <Button
+            type={ButtonType.Secondary}
+            text="Reset"
+            onClick={handleReset}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AnimationShowcase;
