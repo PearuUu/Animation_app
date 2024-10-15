@@ -1,11 +1,15 @@
-import React, { Component } from 'react'
-import themes from '../../themes'
+import React, { Component } from "react";
+import themes from "../../themes";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
 interface ThemeControllerState {
   showThemes: boolean;
 }
 
-export default class ThemeController extends Component<object, ThemeControllerState> {
+export default class ThemeController extends Component<
+  object,
+  ThemeControllerState
+> {
   constructor(props: object) {
     super(props);
     this.state = {
@@ -28,16 +32,11 @@ export default class ThemeController extends Component<object, ThemeControllerSt
           className="btn m-1"
           onClick={this.toggleDropdown}
         >
-          Theme
-          <svg
-            width="12px"
-            height="12px"
-            className="inline-block h-2 w-2 fill-current opacity-60"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 2048 2048"
-          >
-            <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
-          </svg>
+          <span>Theme</span>
+          <RiArrowDropDownLine
+            className="inline-block fill-current opacity-60 p-0"
+            size={30}
+          />
         </div>
         {showThemes && (
           <ul
