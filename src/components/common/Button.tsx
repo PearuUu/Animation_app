@@ -16,14 +16,16 @@ interface Props{
     width?: string;
     height?: string;
     className?: string;
+    children?: React.ReactNode;
 }
 
 
 
-const Button: React.FC<Props> = ({text, onClick, type = ButtonType.Primary, width, height, className}) => {
+const Button: React.FC<Props> = ({text, onClick, type = ButtonType.Primary, width, height, className, children}) => {
     return (
         <button className={`btn ${type} w-${width} h-${height} ${className}`} onClick={onClick}>
           {text}
+          {children}
         </button>
     );
 }

@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import BasePageLayout from "../layouts/BasePageLayout";
 import AnimationShowcase from "../components/animation/AnimationShowcase";
+import { ControllerUpdate } from "react-spring";
  
 
 export default class BasicTransitionsPage extends Component {
-  animationConfig = {
+  transformConfig: ControllerUpdate = {
     to: { x: 500 },
     from: { x: 0, y: 0 },
     config: {
@@ -12,13 +13,16 @@ export default class BasicTransitionsPage extends Component {
     },
   };
 
+  fadeConfig: ControllerUpdate = {
+    
+  };
 
   render() {
     return (
       <BasePageLayout title="Basic Transitions">
         <AnimationShowcase
           title="Transform"
-          animationConfig={this.animationConfig}
+          animationConfig={this.transformConfig}
         />
       </BasePageLayout>
     );

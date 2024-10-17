@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useSpring, animated, ControllerUpdate } from "@react-spring/web";
 import PropertyInput from "./PropertySlider";
 import Button, { ButtonType } from "../common/Button";
+import { CiPlay1 } from "react-icons/ci";
+import { BiReset } from "react-icons/bi";
 
 interface Props {
   title: string;
@@ -25,6 +27,10 @@ const AnimationShowcase: React.FC<Props> = ({ title, animationConfig }) => {
 
   const handleReset = () => {
     api.start({ from: { ...config.from } });
+  }
+
+  const handleReverse = () => {
+    api.start({...config, from: { ...config.to }, to: { ...config.from } });
   }
 
   const handleInputChange = (path: string[], value: number) => {
@@ -91,17 +97,17 @@ const AnimationShowcase: React.FC<Props> = ({ title, animationConfig }) => {
         <div className="flex flex-col w-full gap-3">{renderInputs(config)}</div>
 
         <div className="pt-5 flex gap-3 ml-10">
+          <Button type={ButtonType.Primary} onClick={handleRun}>
+            <CiPlay1 className="text-2xl" />
+          </Button>
 
-          <Button
-            type={ButtonType.Primary}
-            text="Run"
-            onClick={handleRun}/>
+          <Button type={ButtonType.Secondary} onClick={handleReset}>
+            <BiReset className="text-2xl" />
+          </Button>
 
-          <Button
-            type={ButtonType.Secondary}
-            text="Reset"
-            onClick={handleReset}
-          />
+          <Button type={ButtonType.Accent} onClick={handleReverse}>
+            <CiPlay1 className="text-2xl rotate-180" />
+          </Button>
         </div>
       </div>
     </div>
