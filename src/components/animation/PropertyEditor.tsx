@@ -2,8 +2,7 @@ import React from 'react';
 import { ControllerUpdate, Lookup, SpringRef } from 'react-spring';
 import PropertyInput from './PropertySlider';
 import Button, { ButtonType } from '../common/Button';
-import { CiPlay1 } from 'react-icons/ci';
-import { BiReset } from 'react-icons/bi';
+import { IoPlayOutline, IoRefreshSharp } from 'react-icons/io5';
 
 interface Props {
   config: ControllerUpdate;
@@ -59,15 +58,15 @@ const PropertyEditor: React.FC<Props> = ({config, onChange, api}) => {
 
         <div className="pt-5 flex gap-3 ml-10">
           <Button type={ButtonType.Primary} onClick={handleRun}>
-            <CiPlay1 className="text-2xl" />
+            <IoPlayOutline className="text-2xl font-extrabold" />
           </Button>
 
           <Button type={ButtonType.Secondary} onClick={handleReset}>
-            <BiReset className="text-2xl" />
+            <IoRefreshSharp className="text-2xl scale-x-[-1]" />
           </Button>
 
           <Button type={ButtonType.Accent} onClick={handleReverse}>
-            <CiPlay1 className="text-2xl rotate-180" />
+            <IoPlayOutline className="text-2xl rotate-180" />
           </Button>
         </div>
       </div>
