@@ -30,7 +30,7 @@ const AnimationShowcase: React.FC<Props> = ({ title, animationConfig }) => {
   }
 
   const handleReverse = () => {
-    api.start({...config, from: { ...config.to }, to: { ...config.from } });
+    api.start({...config, reverse: true});
   }
 
   const handleInputChange = (path: string[], value: number) => {
@@ -81,7 +81,7 @@ const AnimationShowcase: React.FC<Props> = ({ title, animationConfig }) => {
   };
 
   return (
-    <div className="flex flex-row gap-3">
+    <div className="flex flex-row gap-3 bg-base-300 p-10 rounded-btn">
       <div className="flex flex-col gap-5 w-1/2">
         <span className="font-semibold text-xl text-secondary">{title}</span>
         <div className="flex items-center h-full">
