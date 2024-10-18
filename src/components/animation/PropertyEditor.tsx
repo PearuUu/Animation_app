@@ -1,6 +1,6 @@
 import React from 'react';
 import { ControllerUpdate, Lookup, SpringRef } from 'react-spring';
-import PropertyInput from './PropertySlider';
+import PropertyInput from './PropertyInput';
 import Button, { ButtonType } from '../common/Button';
 import { IoPlayOutline, IoRefreshSharp } from 'react-icons/io5';
 

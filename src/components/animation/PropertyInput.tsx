@@ -33,15 +33,15 @@ const PropertyInput: React.FC<Props> = ({
           max={max}
           step={step}
           value={value}
-          className="range w-full"
+          className="range w-3/4"
           onChange={handleInputChange}
         />
         <input
-          type="text"
-          placeholder="Type here"
+          type="number"
           value={value}
+          step={step}
           onChange={handleInputChange}
-          className="input input-bordered w-full h-10"
+          className="input input-bordered w-1/4 h-10"
         />
       </div>
     </div>
