@@ -1,16 +1,11 @@
 import React, { Component } from "react";
 import BasePageLayout from "../layouts/BasePageLayout";
-import AnimationShowcase from "../components/animation/AnimationShowcase";
-import { ControllerUpdate } from "react-spring";
+import AnimationShowcase from "../components/animation/BasicAnimationShowcase";
+import IAnimationConfig from "../models/IAnimationConfig";
 
-interface Config{
-  title: string,
-  config: ControllerUpdate
-}
  
-
 export default class BasicTransitionsPage extends Component {
-  animationConfigs: Array<Config> = [
+  animationConfigs: Array<IAnimationConfig> = [
     {
       title: "Transform",
       config: {

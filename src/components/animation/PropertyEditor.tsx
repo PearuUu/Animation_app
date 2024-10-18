@@ -23,7 +23,7 @@ const PropertyEditor: React.FC<Props> = ({config, onChange, api}) => {
                 onChange={(value) => onChange([...path, key], value)}
                 min={0}
                 max={500}
-                step={0.5}
+                step={0.1}
                 title={key}
               />
             </div>

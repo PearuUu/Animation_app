@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.tsx";
 import { Component } from "react";
 import BasicTransitionsPage from "./pages/BasicTransitionsPage.tsx";
+import InteractiveAnimationsPage from "./pages/InteractiveAnimationsPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
       },
       {
         path: "gestures-interactions",
-        element: <span>Gestures & Interactions</span>,
+        element: <InteractiveAnimationsPage />,
       },
       {
         path: "scroll-animations",
