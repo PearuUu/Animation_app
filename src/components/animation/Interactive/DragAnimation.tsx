@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ControllerUpdate, useSpring, animated } from "react-spring";
+import { ControllerUpdate, useSpring } from "react-spring";
 import { useDrag } from "react-use-gesture";
 import AnimationLayout from "../../../layouts/AnimationLayout";
 import IAnimationConfig from "../../../models/IAnimationConfig";
@@ -51,12 +51,10 @@ const DragAnimation = () => {
       config={config}
       onChange={handleInputChange}
       api={api}
+      spring={spring}
+      bind={bindDrag}
     >
-      <animated.div className="size-40" {...bindDrag()} style={spring}>
-        <div className="size-full bg-secondary rounded-md flex items-center justify-center text-white font-bold">
-          <span className="select-none">Drag</span>
-        </div>
-      </animated.div>
+      
     </AnimationLayout>
   );
 };
