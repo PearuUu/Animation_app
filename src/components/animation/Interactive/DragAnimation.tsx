@@ -1,9 +1,7 @@
-import { useState } from "react";
-import { ControllerUpdate, useSpring } from "react-spring";
 import { useDrag } from "react-use-gesture";
 import AnimationLayout from "../../../layouts/AnimationLayout";
 import IAnimationConfig from "../../../models/IAnimationConfig";
-import NestedObject from "../../../models/NestedObject";
+import AnimationHelper from "../../../helpers/AnimationHelper";
 
 const DragAnimation = () => {
   const animConfig: IAnimationConfig = {
@@ -20,9 +18,13 @@ const DragAnimation = () => {
     },
   };
 
-  const [config, setConfig] = useState<ControllerUpdate>(animConfig.config);
+  const helper = new AnimationHelper();
 
-  const [spring, api] = useSpring(() => config);
+  const { config, setConfig, spring, api } = helper.useAnimationSetup(animConfig.config);
+
+  const handleInputChange = (path: string[], value: number) => {
+    helper.baseHandleInputChange(path, value, config, setConfig, api);
+  };
 
   const bindDrag = useDrag(({ offset }) => {
     api({
@@ -32,18 +34,7 @@ const DragAnimation = () => {
     setConfig({ ...config, x: offset[0], y: offset[1] });
   });
 
-  const handleInputChange = (path: string[], value: number) => {
-    const newData = { ...config };
-    let current: object | number = newData;
-
-    for (let i = 0; i < path.length - 1; i++) {
-      current = (current as NestedObject)[path[i]] as NestedObject;
-    }
-
-    (current as NestedObject)[path[path.length - 1]] = value;
-    setConfig(newData);
-    api({ ...config });
-  };
+  
 
   return (
     <AnimationLayout

@@ -1,32 +1,23 @@
-import React, { useState } from "react";
-import { useSpring, ControllerUpdate } from "@react-spring/web";
+import React from "react";
+import { ControllerUpdate } from "@react-spring/web";
 import AnimationLayout from "../../layouts/AnimationLayout";
+import AnimationHelper from "../../helpers/AnimationHelper";
 
 interface Props {
   title: string;
   animationConfig: ControllerUpdate;
 }
 
-type NestedObject = {
-  [key: string]: number | NestedObject;
-};
-
 const AnimationShowcase: React.FC<Props> = ({ title, animationConfig }) => {
-  const [config, setConfig] = useState<ControllerUpdate>(animationConfig);
+  const helper = new AnimationHelper();
 
-  const [springs, api] = useSpring(() => config.from);
+  const { config, setConfig, spring, api } = helper.useAnimationSetup(animationConfig);
 
   const handleInputChange = (path: string[], value: number) => {
-    const newData = { ...config };
-    let current: object | number = newData;
-
-    for (let i = 0; i < path.length - 1; i++) {
-      current = (current as NestedObject)[path[i]] as NestedObject;
-    }
-
-    (current as NestedObject)[path[path.length - 1]] = value;
-    setConfig(newData);
-    api.start({ from: { ...config.from } });
+    helper.baseHandleInputChange(path, value, config, setConfig, api, {
+      from: { ...config.from },
+    });
+    
   };
 
   return (
@@ -35,7 +26,7 @@ const AnimationShowcase: React.FC<Props> = ({ title, animationConfig }) => {
       config={config}
       onChange={handleInputChange}
       api={api}
-      spring={springs}
+      spring={spring}
     >
     </AnimationLayout>
   );
