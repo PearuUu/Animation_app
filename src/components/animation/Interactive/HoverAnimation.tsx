@@ -1,36 +1,48 @@
-// import React, { useState } from "react";
-// import AnimationLayout from "../../../layouts/AnimationLayout";
-// import IAnimationConfig from "../../../models/IAnimationConfig";
-// import { ControllerUpdate, useSpring } from "react-spring";
+import AnimationLayout from "../../../layouts/AnimationLayout";
+import IAnimationConfig from "../../../models/IAnimationConfig";
+import AnimationHelper from "../../../helpers/AnimationHelper";
 
-// export default function HoverAnimation() {
-//   const animConfig: IAnimationConfig = {
-//     title: "Hover",
-//     config: {
-//       x: 0,
-//       y: 0,
-//       config: {
-//         mass: 1,
-//         tension: 170,
-//         friction: 26,
-//         precision: 0.1,
-//       },
-//     },
-//   };
+export default function HoverAnimation() {
+  const animConfig: IAnimationConfig = {
+    title: "Hover",
+    config: {
+      from: { backgroundColor: "#2cc9b7", scale: 1, opacity: 1 },
+      to: { backgroundColor: "#6a73E5", scale: 1.5, opacity: 1 },
+      config: {
+        duration: 200,
+      },
+    },
+  };
 
-//   const [config, setConfig] = useState<ControllerUpdate>(animConfig.config);
+  const helper = new AnimationHelper();
 
-//   const [spring, api] = useSpring(() => config);
+  const { config, setConfig, spring, api } = helper.useAnimationSetup(
+    animConfig.config
+  );
 
+  const handleInputChange = (path: string[], value: number | string) => {
+    helper.baseHandleInputChange(path, value, config, setConfig, api, {from: config.from});
+  };
 
+  const handleMouseEnter = () => {
+    console.log("Mouse entered");
+    api.start(config);
+  };
 
-//   return <AnimationLayout 
-//   title="Hover"
-//   api={api}
-//   config={config}
-//   spring={spring}
-  
-//   >
-//   </AnimationLayout>;
-// }
+  const handleMouseLeave = () => {
+    console.log("Mouse left");
+    api.start({...config, reverse: true});
+  };
 
+  return (
+    <AnimationLayout
+      title="Hover"
+      api={api}
+      config={config}
+      spring={spring}
+      onChange={handleInputChange}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    ></AnimationLayout>
+  );
+}

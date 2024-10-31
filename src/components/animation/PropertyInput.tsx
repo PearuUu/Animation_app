@@ -1,12 +1,13 @@
 import React from "react";
 
 interface Props {
-  value: number;
-  onChange: (value: number) => void;
+  value: number | string;
+  onChange: (value: number | string) => void;
   min?: number;
   max?: number;
   step?: number;
   title?: string;
+  inputType?: "text" | "number" | "color";
 }
 
 const PropertyInput: React.FC<Props> = ({
@@ -16,18 +17,20 @@ const PropertyInput: React.FC<Props> = ({
   max = 500,
   step = 1,
   title = "",
+  inputType = "number",
 }) => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(Number(e.target.value));
-    
+    if(inputType == "number") onChange(Number(e.target.value));
+    else onChange(e.target.value);
   };
 
   return (
     <div className="flex flex-col w-full gap-3">
       <span className="text-md ">{title}</span>
       <div className="flex gap-3 items-center">
-        <input
+        {inputType === "number" && (
+          <input
           type="range"
           min={min}
           max={max}
@@ -36,8 +39,10 @@ const PropertyInput: React.FC<Props> = ({
           className="range w-3/4"
           onChange={handleInputChange}
         />
+        )}
+        
         <input
-          type="number"
+          type={inputType}
           value={value}
           step={step}
           onChange={handleInputChange}

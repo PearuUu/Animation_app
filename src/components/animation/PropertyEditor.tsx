@@ -6,7 +6,7 @@ import { IoPlayOutline, IoRefreshSharp } from 'react-icons/io5';
 
 interface Props {
   config: ControllerUpdate;
-  onChange: (path: string[], value: number) => void;
+  onChange: (path: string[], value: number | string) => void;
   api: SpringRef<Lookup<unknown>>
 }
 
@@ -28,7 +28,34 @@ const PropertyEditor: React.FC<Props> = ({config, onChange, api}) => {
               />
             </div>
           );
-        } else if (typeof value === "object") {
+        } 
+        else if(typeof value === "string") {
+          if(value[0] == "#"){
+            return (
+              <div key={key} className="py-1 ml-10">
+                <PropertyInput
+                  key={key}
+                  value={value}
+                  onChange={(value) => onChange([...path, key], value)}
+                  title={key}
+                  inputType={"color"}
+                />
+              </div>
+            )
+          }
+          return (
+            <div key={key} className="py-1 ml-10">
+              <PropertyInput
+                key={key}
+                value={value}
+                onChange={(value) => onChange([...path, key], value)}
+                title={key}
+                inputType={"text"}
+              />
+            </div>
+          );
+        }
+        else if (typeof value === "object") {
           return (
             <div key={key} className="ml-10">
               <span className="text-lg font-semibold">{key}</span>

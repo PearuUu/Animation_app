@@ -13,7 +13,7 @@ const AnimationShowcase: React.FC<Props> = ({ title, animationConfig }) => {
 
   const { config, setConfig, spring, api } = helper.useAnimationSetup(animationConfig);
 
-  const handleInputChange = (path: string[], value: number) => {
+  const handleInputChange = (path: string[], value: number | string) => {
     helper.baseHandleInputChange(path, value, config, setConfig, api, {
       from: { ...config.from },
     });

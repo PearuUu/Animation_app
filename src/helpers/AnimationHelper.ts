@@ -19,7 +19,7 @@ export default class AnimationHelper {
 
   baseHandleInputChange(
     path: string[],
-    value: number,
+    value: number | string,
     config: ControllerUpdate,
     setConfig: (value: React.SetStateAction<ControllerUpdate>) => void,
     api: SpringRef<Lookup<unknown>>,
@@ -34,7 +34,7 @@ export default class AnimationHelper {
 
     (current as NestedObject)[path[path.length - 1]] = value;
     setConfig(newData);
-    if (apiObj != null) api({ ...apiObj });
-    else api({ ...config });
+    if (apiObj != null) api.start({ ...apiObj });
+    else api.start({ ...config });
   }
 }
