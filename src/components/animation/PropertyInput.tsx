@@ -29,25 +29,34 @@ const PropertyInput: React.FC<Props> = ({
     <div className="flex flex-col w-full gap-3">
       <span className="text-md ">{title}</span>
       <div className="flex gap-3 items-center">
-        {inputType === "number" && (
+        {inputType === "number" ? (
+          <div>
+            <input
+              type="range"
+              min={min}
+              max={max}
+              step={step}
+              value={value}
+              className="range w-3/4"
+              onChange={handleInputChange}
+            />
+            <input
+              type={inputType}
+              value={value}
+              step={step}
+              onChange={handleInputChange}
+              className="input input-bordered w-1/4 h-10"
+            />
+          </div>
+        ) : (
           <input
-          type="range"
-          min={min}
-          max={max}
-          step={step}
-          value={value}
-          className="range w-3/4"
-          onChange={handleInputChange}
-        />
+            type={inputType}
+            value={value}
+            step={step}
+            onChange={handleInputChange}
+            className="input input-bordered w-full h-10"
+          />
         )}
-        
-        <input
-          type={inputType}
-          value={value}
-          step={step}
-          onChange={handleInputChange}
-          className="input input-bordered w-1/4 h-10"
-        />
       </div>
     </div>
   );

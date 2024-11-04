@@ -31,7 +31,7 @@ const AnimationLayout: React.FC<Props> = ({
   const hasBackgroundColor = config && config.from && config.from.backgroundColor;
 
   return (
-    <div className="flex flex-row gap-3 bg-base-300 p-10 rounded-xl">
+    <div className="flex flex-row gap-3 bg-base-300 p-10 rounded-xl select-none">
       <div className="flex flex-col gap-5 w-1/2">
         <span className="font-semibold text-xl text-secondary">{title}</span>
         <div className="flex items-center justify-center h-full overflow-hidden">
