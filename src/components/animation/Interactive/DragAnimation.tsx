@@ -1,4 +1,4 @@
-import { useDrag } from "react-use-gesture";
+import { useGesture } from "react-use-gesture";
 import AnimationLayout from "../../../layouts/AnimationLayout";
 import IAnimationConfig from "../../../models/IAnimationConfig";
 import AnimationHelper from "../../../helpers/AnimationHelper";
@@ -22,19 +22,26 @@ const DragAnimation = () => {
 
   const { config, setConfig, spring, api } = helper.useAnimationSetup(animConfig.config);
 
-  const handleInputChange = (path: string[], value: number) => {
+  const handleInputChange = (path: string[], value: number | string) => {
     helper.baseHandleInputChange(path, value, config, setConfig, api);
   };
 
-  const bindDrag = useDrag(({ offset }) => {
-    api({
-      x: offset[0],
-      y: offset[1],
-    });
-    setConfig({ ...config, x: offset[0], y: offset[1] });
+  const bind = useGesture({
+    onHover: ({ hovering }) => {
+      api({
+        scale: hovering ? 1.1 : 1,
+      });
+      setConfig({ ...config });
+    },
+    onDrag: ({ active, offset: [x, y] }) => {
+      api({
+        x: x,
+        y: y,
+        scale: active ? 1.3 : 1,
+      });
+      setConfig({ ...config, x: x, y: y });
+    },
   });
-
-  
 
   return (
     <AnimationLayout
@@ -43,7 +50,7 @@ const DragAnimation = () => {
       onChange={handleInputChange}
       api={api}
       spring={spring}
-      bind={bindDrag}
+      bind={bind}
     >
       
     </AnimationLayout>
