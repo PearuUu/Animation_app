@@ -9,7 +9,7 @@ interface Props {
   children?: ReactNode;
   config: ControllerUpdate;
   onChange: (path: string[], value: number | string) => void;
-  api: SpringRef<Lookup<unknown>>;
+  api?: SpringRef<Lookup<unknown>>;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   spring: any;
   bind?: (...args: unknown[]) => ReactEventHandlers;
@@ -28,29 +28,38 @@ const AnimationLayout: React.FC<Props> = ({
   onMouseEnter,
   onMouseLeave,
 }) => {
-  const hasBackgroundColor = config && config.from && config.from.backgroundColor;
+  const hasBackgroundColor =
+    config && config.from && config.from.backgroundColor;
 
   return (
-    <div className="flex flex-row gap-3 bg-base-300 p-10 rounded-xl select-none">
-      <div className="flex flex-col gap-5 w-1/2">
+    <div className="flex flex-row gap-3 bg-base-300 p-10 rounded-xl select-none min-h-96">
+      <div className={`flex flex-col gap-5 ${api != undefined ? 'w-1/2' : 'w-full'}`}>
         <span className="font-semibold text-xl text-secondary">{title}</span>
         <div className="flex items-center justify-center h-full overflow-hidden">
-          <animated.div
-            className={"size-40"}
-            {...(bind ? bind() : {})}
-            style={spring}
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-          >
-            <div className={`size-full ${!hasBackgroundColor ? "bg-secondary" : ""} rounded-md flex items-center justify-center text-white font-bold`}>
-              <span className="select-none">{title}</span>
-            </div>
-          </animated.div>
-          {children}
+          {children === undefined ? (
+            <animated.div
+              className={"size-40"}
+              {...(bind ? bind() : {})}
+              style={spring}
+              onMouseEnter={onMouseEnter}
+              onMouseLeave={onMouseLeave}
+            >
+              <div
+                className={`size-full ${
+                  !hasBackgroundColor ? "bg-secondary" : ""
+                } rounded-md flex items-center justify-center text-white font-bold`}
+              >
+                <span className="select-none">{title}</span>
+              </div>
+            </animated.div>
+          ) : (
+            children
+          )}
         </div>
       </div>
-
-      <PropertyEditor config={config} onChange={onChange} api={api} />
+      {api !== undefined && (
+        <PropertyEditor config={config} onChange={onChange} api={api} />
+      )}
     </div>
   );
 };
