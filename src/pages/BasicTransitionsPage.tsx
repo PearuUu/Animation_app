@@ -37,7 +37,7 @@ export default class BasicTransitionsPage extends Component {
   render() {
     return (
       <BasePageLayout title="Basic Transitions">
-        <div className="flex flex-col space-y-10">
+
           {this.animationConfigs.map((animation, index) => (
             <AnimationShowcase
               key={index}
@@ -45,7 +45,7 @@ export default class BasicTransitionsPage extends Component {
               animationConfig={animation.config}
             />
           ))}
-        </div>
+
       </BasePageLayout>
     );
   }

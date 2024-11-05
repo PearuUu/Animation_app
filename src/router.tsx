@@ -1,14 +1,20 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
 import App from "./App.tsx";
 import { Component } from "react";
 import BasicTransitionsPage from "./pages/BasicTransitionsPage.tsx";
 import InteractiveAnimationsPage from "./pages/InteractiveAnimationsPage.tsx";
+import ScrollAnimationsPage from "./pages/ScrollAnimationsPage.tsx";
+
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
+      {
+        path: "/",
+        element: <Navigate to="/basic-transitions" replace />,
+      },
       {
         path: "basic-transitions",
         element: <BasicTransitionsPage />,
@@ -19,7 +25,7 @@ const router = createBrowserRouter([
       },
       {
         path: "scroll-animations",
-        element: <span>Scroll Animations</span>,
+        element: <ScrollAnimationsPage />,
       },
       {
         path: "spring-animations",

@@ -16,11 +16,9 @@ export default class InteractiveAnimationsPage extends Component {
   render() {
     return (
       <BasePageLayout title="Gestures & Interactions">
-        <div className="flex flex-col space-y-10 w-full">
           <DragAnimation />
           <HoverAnimation />
           <DoubleClickAnimation />
-        </div>
       </BasePageLayout>
     );
   }

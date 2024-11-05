@@ -27,6 +27,7 @@ export default function DoubleClickAnimation() {
     helper.baseHandleInputChange(path, value, config, setConfig, api, {
       from: config.from,
     });
+    setIsFinished(false);
   };
 
   const [isFinished, setIsFinished] = useState(false);

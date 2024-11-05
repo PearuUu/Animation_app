@@ -11,7 +11,9 @@ const BasePageLayout: React.FC<BaseLayoutProps> = ({ title, children }) => {
       <header>
         <h1 className="text-3xl font-bold pb-10">{title}</h1>
       </header>
-      <main className="w-full">{children}</main>
+      <main className="w-full">
+        <div className="flex flex-col space-y-10 w-full">{children}</div>
+      </main>
     </div>
   );
 };
