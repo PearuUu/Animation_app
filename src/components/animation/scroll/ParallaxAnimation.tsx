@@ -19,13 +19,20 @@ export default function ParallaxAnimation() {
               <h1 className="text-white text-4xl">Layer 1</h1>
             </div>
           </ParallaxLayer>
+
           <ParallaxLayer
             offset={1}
-            speed={0.5}
+            speed={0.1}
             style={{ backgroundColor: "#4d4dff" }}
           >
             <div className="h-full flex items-center justify-center">
               <h1 className="text-white text-4xl">Layer 2</h1>
+            </div>
+          </ParallaxLayer>
+
+          <ParallaxLayer offset={0} speed={-1.5}>
+            <div className="h-1/4 w-1/4 bg-secondary flex justify-center items-center rounded-xl    ">
+              <span className="font-bold text-white text-xl">Floating</span>
             </div>
           </ParallaxLayer>
         </Parallax>
