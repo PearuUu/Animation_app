@@ -17,6 +17,7 @@ export default function FadeInAnimation() {
     },
   };
 
+  // eslint-disable-next-line prefer-const
   let [ref, viewSpring] = useInView(
     () => ({...animConfig.config}),{ rootMargin: "0px 0px" }
   );

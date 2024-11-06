@@ -10,5 +10,7 @@ export default {
   plugins: [daisyui],
   daisyui: {
     themes: themes,
+    darkTheme: 'dark'
   },
+  
 };

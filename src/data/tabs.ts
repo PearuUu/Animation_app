@@ -17,11 +17,6 @@ const tabs: NavBarItem[] = [
         SubItems: []
     }),
     new NavBarItem({
-        Title: "Spring Animations",
-        Path: "spring-animations",
-        SubItems: []
-    }),
-    new NavBarItem({
         Title: "Chain Animations",
         Path: "chain-animations",
         SubItems: []

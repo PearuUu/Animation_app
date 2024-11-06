@@ -4,6 +4,7 @@ import { Component } from "react";
 import BasicTransitionsPage from "./pages/BasicTransitionsPage.tsx";
 import InteractiveAnimationsPage from "./pages/InteractiveAnimationsPage.tsx";
 import ScrollAnimationsPage from "./pages/ScrollAnimationsPage.tsx";
+import ChainAnmationsPage from "./pages/ChainAnmationsPage.tsx";
 
 
 const router = createBrowserRouter([
@@ -28,12 +29,8 @@ const router = createBrowserRouter([
         element: <ScrollAnimationsPage />,
       },
       {
-        path: "spring-animations",
-        element: <span>Spring Animations</span>,
-      },
-      {
         path: "chain-animations",
-        element: <span>Chain Animations</span>,
+        element: <ChainAnmationsPage />,
       },
       {
         path: "use-cases",
