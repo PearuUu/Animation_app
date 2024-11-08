@@ -5,8 +5,8 @@ import Button, { ButtonType } from '../common/Button';
 import { IoPlayOutline, IoRefreshSharp } from 'react-icons/io5';
 
 interface Props {
-  config: ControllerUpdate;
-  onChange: (path: string[], value: number | string) => void;
+  config?: ControllerUpdate;
+  onChange?: (path: string[], value: number | string) => void;
   api: SpringRef<Lookup<unknown>>
 }
 
@@ -20,7 +20,7 @@ const PropertyEditor: React.FC<Props> = ({config, onChange, api}) => {
               <PropertyInput
                 key={key}
                 value={value}
-                onChange={(value) => onChange([...path, key], value)}
+                onChange={(value) => onChange && onChange([...path, key], value)}
                 min={0}
                 max={500}
                 step={0.1}
@@ -36,7 +36,7 @@ const PropertyEditor: React.FC<Props> = ({config, onChange, api}) => {
                 <PropertyInput
                   key={key}
                   value={value}
-                  onChange={(value) => onChange([...path, key], value)}
+                  onChange={(value) => onChange && onChange([...path, key], value)}
                   title={key}
                   inputType={"color"}
                 />
@@ -48,7 +48,7 @@ const PropertyEditor: React.FC<Props> = ({config, onChange, api}) => {
               <PropertyInput
                 key={key}
                 value={value}
-                onChange={(value) => onChange([...path, key], value)}
+                onChange={(value) => onChange && onChange([...path, key], value)}
                 title={key}
                 inputType={"text"}
               />
@@ -72,7 +72,7 @@ const PropertyEditor: React.FC<Props> = ({config, onChange, api}) => {
     };
 
     const handleReset = () => {
-      api.start({ from: { ...config.from } });
+      api.start({ from: { ...config?.from } });
     };
 
     const handleReverse = () => {
@@ -81,7 +81,7 @@ const PropertyEditor: React.FC<Props> = ({config, onChange, api}) => {
 
     return (
       <div className="w-1/2 flex flex-col gap-3">
-        <div className="flex flex-col w-full gap-3">{renderInputs(config)}</div>
+        <div className="flex flex-col w-full gap-3">{config != undefined ? renderInputs(config) : ""}</div>
 
         <div className="pt-5 flex gap-3 ml-10">
           <Button type={ButtonType.Primary} onClick={handleRun}>

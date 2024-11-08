@@ -1,14 +1,12 @@
-import React from 'react'
-import BasePageLayout from '../layouts/BasePageLayout'
-import Test from '../components/animation/Interactive/Test'
-import ChainSwipeAnimation from '../components/animation/chain/ChainSwipeAnimation'
+import BasePageLayout from "../layouts/BasePageLayout";
+import ChainSwipeAnimation from "../components/animation/chain/ChainSwipeAnimation";
+import ChainTypingAnimation from "../components/animation/chain/ChainTypingAnimation";
 
 export default function ChainAnmationsPage() {
   return (
-    <BasePageLayout title='Chain animations'>
-        <div>
-            <ChainSwipeAnimation />
-        </div>
+    <BasePageLayout title="Chain animations">
+      <ChainSwipeAnimation />
+      <ChainTypingAnimation />
     </BasePageLayout>
-  )
+  );
 }
