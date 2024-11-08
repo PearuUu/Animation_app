@@ -5,6 +5,7 @@ import BasicTransitionsPage from "./pages/BasicTransitionsPage.tsx";
 import InteractiveAnimationsPage from "./pages/InteractiveAnimationsPage.tsx";
 import ScrollAnimationsPage from "./pages/ScrollAnimationsPage.tsx";
 import ChainAnmationsPage from "./pages/ChainAnmationsPage.tsx";
+import UseCasesPage from "./pages/UseCasesPage.tsx";
 
 
 const router = createBrowserRouter([
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
       },
       {
         path: "use-cases",
-        element: <span>Use Cases</span>,
+        element: <UseCasesPage />,
       },
     ],
   },
