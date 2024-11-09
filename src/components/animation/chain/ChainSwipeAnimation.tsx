@@ -54,13 +54,14 @@ export default function ChainSwipeAnimation() {
         </span>
         <div className="flex items-center justify-center h-full overflow-hidden">
           <animated.div
-            className="flex flex-col space-y-4 p-4 items-center justify-center bg-neutral"
+            className="flex flex-col space-y-4 items-center justify-center bg-neutral"
             style={{
               height: springs.size,
               width: springs.size,
             }}
             onClick={() => set(!open)}
           >
+            {!open && "Click me"}
             {rowTransitions.map((transitions, rowIndex) => (
               <div key={rowIndex} className={`grid grid-cols-5 gap-y-2 gap-x-2`}>
                 {transitions((style, item) => (

@@ -19,22 +19,10 @@ export default function ChainTypingAnimation() {
 
   const [isReverse, setReverse] = useState(false);
 
-  // const transRef = useSpringRef();
-  // const transition = useTransition(data, {
-  //   ref: transRef,
-  //   from: { opacity: 0, y: 200 },
-  //   enter: { opacity: 1, y: 0 },
-  //   leave: { opacity: 0, y: 200 },
-  //   keys: data.map((_, index) => index),
-  //   config: config.wobbly,
-  //   trail: open ? 400 / data.length : 100,
-  //   reverse: true,
-  // });
-
   const trailsRef = useSpringRef();
   const trails = useTrail(data.length, {
     ref: trailsRef,
-    from: { opacity: 0, y: 20 },
+    from: { opacity: 0, y: 100 },
     to: { opacity: 1, y: 0 },
     config: config.gentle,
     reverse: !open || isReverse,

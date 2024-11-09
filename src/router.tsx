@@ -1,6 +1,5 @@
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
 import App from "./App.tsx";
-import { Component } from "react";
 import BasicTransitionsPage from "./pages/BasicTransitionsPage.tsx";
 import InteractiveAnimationsPage from "./pages/InteractiveAnimationsPage.tsx";
 import ScrollAnimationsPage from "./pages/ScrollAnimationsPage.tsx";
@@ -42,10 +41,9 @@ const router = createBrowserRouter([
 ]);
 
 
-export default class Router extends Component {
-  
-  render() {
-    return <RouterProvider router={router} />;
-  }
-}
+const Router = () => {
+  return <RouterProvider router={router} />;
+};
+
+export default Router;
 
