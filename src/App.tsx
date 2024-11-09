@@ -22,8 +22,7 @@ const App = () => {
       <NavBar title="Animation App" links={tabs} />
 
       {transitions((style, location) => (
-        // Only render Outlet when animation is in "enter" phase to avoid flashing
-
+        
         <animated.div
           key={location.pathname}
           style={style}
