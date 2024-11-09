@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BaseAnimationLayout from "../../../layouts/BaseAnimationLayout";
-import { animated, config, useSpring } from "react-spring";
+import { animated, config, useSpring, useSprings, useTrail, useTransition } from "react-spring";
+import { MdHeight } from "react-icons/md";
 
 // function ProgressBarAnimation(progress: number) {
 //   const animation = useSpring({
@@ -54,20 +55,56 @@ function ProgressBar({ progress }: { progress: number }) {
   );
 }
 
+const ProgressBar2 = ({ progress }: { progress: number }) => {
+  const [segments, setSegments] = useState(
+    Array.from({ length: Math.floor(progress / 5) }, (_, i) => i)
+  );
+
+  const trail = useTrail(segments.length, {
+    from: { height: "5%" },
+    to: { height: "80%" },
+    config: {...config.wobbly, friction: 10},
+    loop: true,
+  });
+
+  useEffect(() => {
+    setSegments(Array.from({ length: Math.floor(progress / 5) }, (_, i) => i));
+  }, [progress]);
+
+  return (
+    <div className="border-4 border-primary bg-transparent w-full h-1/5 rounded-lg flex items-center gap-1 justify-center">
+      {trail.map((style, index) => (
+        <animated.div
+          style={style}
+          key={index}
+          className="w-[4.25%] bg-secondary flex items-center justify-center"
+        >
+          &nbsp;
+        </animated.div>
+      ))}
+      <span className="font-bold text-lg text-white absolute">{progress}%</span>
+    </div>
+  );
+};
+
+
 export default function ProgressBarAnimation() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress((prev) => (prev >= 100 ? 0 : prev + 10));
-    }, 500);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
     <BaseAnimationLayout title="Progress bar animation">
-      <ProgressBar progress={progress} />
+      <div className="flex flex-col w-full h-full justify-center gap-8">
+        <ProgressBar progress={progress} />
+        <ProgressBar2 progress={progress} />
+      </div>
     </BaseAnimationLayout>
   );
 }
