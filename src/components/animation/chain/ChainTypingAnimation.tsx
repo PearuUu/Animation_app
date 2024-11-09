@@ -24,9 +24,14 @@ export default function ChainTypingAnimation() {
     ref: trailsRef,
     from: { opacity: 0, y: 100 },
     to: { opacity: 1, y: 0 },
-    config: config.gentle,
+    config: {
+      tension: config.gentle.tension,
+      friction: 15,
+    },
     reverse: !open || isReverse,
-    onRest:() => {setReverse(false)}
+    onRest: () => {
+      setReverse(false);
+    },
   });
 
   const [gridSize, setGridSize] = useState(0);
@@ -95,11 +100,6 @@ export default function ChainTypingAnimation() {
         </div>
         <div className="flex w-3/4 h-full space-y-1">
           <div className="flex flex-wrap h-fit w-fit text-primary">
-            {/* {transition((style, item) => (
-              <animated.div style={style} className="text-2xl font-bold h-fit">
-                {item}
-              </animated.div>
-            ))} */}
             <div className="flex flex-wrap w-full h-fit space-x-3 space-y-1 z-10">
               {trails.map((style, index) => (
                 <animated.span

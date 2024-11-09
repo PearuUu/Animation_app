@@ -13,7 +13,6 @@ export default function TypingAnimation() {
   useEffect(() => {
     
     setData(userInput.split(""));
-    console.log(data);
   }, [userInput]);
 
   const transition = useTransition(data, {
@@ -22,6 +21,7 @@ export default function TypingAnimation() {
     leave: { opacity: 0, y: -200 },
     keys: data.map((_, index) => index),
     trail: 2,
+
     config: config.wobbly
   });
 
