@@ -5,7 +5,7 @@ export default function RouterAnimationDesc() {
   return (
     <BaseAnimationLayout title="Router Animation">
       <div>
-        <h3 className="text-xl font-bold mb-2">Przypadki użycia</h3>
+        <h3 className="text-xl font-bold mb-2">Kiedy stosować</h3>
         <p className="mb-4">
           Animacje przejścia sprawdzają się dobrze w aplikacjach o
           wielostronicowej nawigacji, zwłaszcza tam, gdzie użytkownicy mogą
