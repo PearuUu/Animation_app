@@ -9,7 +9,7 @@ export default function ParallaxAnimation() {
     >
       <span className="font-semibold text-xl text-secondary">Parallax</span>
       <div className="w-full h-full">
-        <Parallax pages={2} className="!h-full !w-full !relative">
+        <Parallax pages={4} className="!h-full !w-full !relative">
           <ParallaxLayer
             offset={0}
             speed={0.5}
@@ -22,11 +22,30 @@ export default function ParallaxAnimation() {
 
           <ParallaxLayer
             offset={1}
-            speed={0.1}
-            style={{ backgroundColor: "#4d4dff" }}
+            speed={-0.3}
+            style={{ backgroundColor: "#4d4dff", opacity: 0.7 }}
           >
             <div className="h-full flex items-center justify-center">
               <h1 className="text-white text-4xl">Layer 2</h1>
+            </div>
+          </ParallaxLayer>
+
+          <ParallaxLayer
+            offset={2}
+            speed={0.2}
+          >
+            <div className="h-full flex items-center justify-center bg-primary">
+              <h1 className="text-white text-4xl">Layer 3</h1>
+            </div>
+          </ParallaxLayer>
+
+          <ParallaxLayer
+            offset={3}
+            speed={0.3}
+            style={{ backgroundColor: "#4d4dff" }}
+          >
+            <div className="h-full flex items-center justify-center bg-accent">
+              <h1 className="text-white text-4xl">Layer 4</h1>
             </div>
           </ParallaxLayer>
 
