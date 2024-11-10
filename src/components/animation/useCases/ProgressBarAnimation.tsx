@@ -2,9 +2,6 @@ import { useEffect, useState } from "react";
 import BaseAnimationLayout from "../../../layouts/BaseAnimationLayout";
 import { animated, config, useSpring, useTrail } from "react-spring";
 
-
-// }
-
 function ProgressBar({ progress }: { progress: number }) {
   const styles = useSpring({
     width: `${progress}%`,

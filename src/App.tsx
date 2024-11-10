@@ -7,8 +7,7 @@ import { useTransition, animated } from "@react-spring/web";
 
 const App = () => {
   const location = useLocation();
-
-  // Define transitions for each route change
+  
   const transitions = useTransition(location, {
     from: { opacity: 0, transform: "translate3d(100%,0,0)" },
     enter: { opacity: 1, transform: "translate3d(0%,0,0)" },
