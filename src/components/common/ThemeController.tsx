@@ -38,8 +38,8 @@ export default class ThemeController extends Component<
             size={30}
           />
         </div>
-        {showThemes && (
-          <ul
+       
+          <ul hidden={!showThemes}
             tabIndex={0}
             className="dropdown-content bg-base-300 rounded-box z-[1] w-52 p-2 shadow-2xl"
           >
@@ -55,7 +55,7 @@ export default class ThemeController extends Component<
               </li>
             ))}
           </ul>
-        )}
+        
       </div>
     );
   }
