@@ -1,39 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import BaseAnimationLayout from "../../../layouts/BaseAnimationLayout";
-import { animated, config, useSpring, useSprings, useTrail, useTransition } from "react-spring";
-import { MdHeight } from "react-icons/md";
+import { animated, config, useSpring, useTrail } from "react-spring";
 
-// function ProgressBarAnimation(progress: number) {
-//   const animation = useSpring({
-//     from: { width: "0%" },
-//     to: { width: "100%" },
-//     config: { duration: 5000, ...config.wobbly },
-//     onChange: ({value}) => {
-//          const width = parseFloat(value.width).toFixed(2);
-//          setProgress(width);
-//     }
-//   });
 
-//   const waveMovement = useSpring({
-//     loop: true,
-//     from: { transform: "translateX(0px)" },
-//     to: { transform: "translateX(30px)" },
-//     config: { duration: 1500 },
-//   });
-
-//   return (
-//     <BaseAnimationLayout title="Progress bar animation">
-//       <div className="border-4  border-primary bg-transparent w-full h-1/5 rounded-lg flex justify-center items-center">
-//         <animated.div
-//           style={{...animation, ...waveMovement}}
-//           className="w-full h-full bg-secondary rounded-sm flex items-center justify-center"
-//         ></animated.div>
-//         <span className="font-bold text-lg text-white absolute">
-//           {progress}%
-//         </span>
-//       </div>
-//     </BaseAnimationLayout>
-//   );
 // }
 
 function ProgressBar({ progress }: { progress: number }) {
@@ -45,7 +14,7 @@ function ProgressBar({ progress }: { progress: number }) {
     },
   });
   return (
-    <div className="border-4  border-primary bg-transparent w-full h-1/5 rounded-lg flex justify-center items-center">
+    <div className="border-4  border-primary bg-transparent w-full h-32 rounded-lg flex justify-center items-center">
       <animated.div
         style={styles}
         className="w-full h-full bg-secondary rounded-sm flex items-center justify-center"
@@ -55,34 +24,31 @@ function ProgressBar({ progress }: { progress: number }) {
   );
 }
 
-const ProgressBar2 = ({ progress }: { progress: number }) => {
-  const [segments, setSegments] = useState(
-    Array.from({ length: Math.floor(progress / 5) }, (_, i) => i)
+const ProgressBar2 = () => {
+  const [segments] = useState(
+    Array.from({ length: Math.floor(100) }, (_, i) => i)
   );
 
   const trail = useTrail(segments.length, {
     from: { height: "5%" },
     to: { height: "80%" },
-    config: {...config.wobbly, friction: 10},
+    config: { ...config.wobbly, mass: 5, tension: 200 },
     loop: true,
+   
   });
 
-  useEffect(() => {
-    setSegments(Array.from({ length: Math.floor(progress / 5) }, (_, i) => i));
-  }, [progress]);
-
   return (
-    <div className="border-4 border-primary bg-transparent w-full h-1/5 rounded-lg flex items-center gap-1 justify-center">
+    <div className="border-4 border-primary bg-transparent w-full h-32 rounded-lg flex items-center gap-1 justify-center">
       {trail.map((style, index) => (
         <animated.div
           style={style}
           key={index}
-          className="w-[4.25%] bg-secondary flex items-center justify-center"
+          className="w-[1%] bg-secondary flex items-center justify-center"
         >
           &nbsp;
         </animated.div>
       ))}
-      <span className="font-bold text-lg text-white absolute">{progress}%</span>
+      
     </div>
   );
 };
@@ -103,7 +69,46 @@ export default function ProgressBarAnimation() {
     <BaseAnimationLayout title="Progress bar animation">
       <div className="flex flex-col w-full h-full justify-center gap-8">
         <ProgressBar progress={progress} />
-        <ProgressBar2 progress={progress} />
+        <ProgressBar2 />
+        <div className="w-3/4 h-full flex flex-col">
+          <span className="text-2xl font-bold">Opis</span>
+          <span className="text-xl font-semibold mt-4">Kiedy stosować</span>
+          <ul className="list-disc ml-6 mb-4">
+            <li>
+              Podczas dłużej trwających operacji, takich jak pobieranie,
+              przetwarzanie danych, ładowanie zawartości strony lub aplikacji,
+              aby użytkownik widział, że proces jest aktywny.
+            </li>
+            <li>
+              W przypadku etapowych procesów, np. rejestracji czy konfiguracji,
+              gdzie progress bar może pokazywać procent ukończenia lub kolejne
+              kroki.
+            </li>
+            <li>
+              Kiedy chcesz poprawić transparentność i komfort użytkownika, dając
+              mu kontrolę nad czasem oczekiwania.
+            </li>
+          </ul>
+
+          <span className="text-xl font-semibold">Jak stosować</span>
+          <ul className="list-disc ml-6 mb-4">
+            <li>
+              Animację progresu najlepiej wywołać na początku procesu, np. w
+              momencie rozpoczęcia ładowania, i stopniowo zwiększać długość
+              paska, w miarę jak operacja postępuje.
+            </li>
+            <li>
+              Jeśli czas trwania procesu jest nieznany, można zastosować
+              animację "nieokreślonego progresu" (np. przesuwającego się paska),
+              która informuje użytkownika o aktywności bez podawania konkretnego
+              czasu.
+            </li>
+            <li>
+              Użyj płynnego przejścia i delikatnych efektów, aby wskazać wzrost
+              postępu, unikając nagłych skoków.
+            </li>
+          </ul>
+        </div>
       </div>
     </BaseAnimationLayout>
   );
