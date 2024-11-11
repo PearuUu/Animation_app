@@ -27,6 +27,10 @@ Projekt **"Animation App"** demonstruje różne techniki animacji w aplikacjach 
   - **assets/**: Katalog z zasobami (np. obrazki, ikony).
   - **components/**: Katalog z komponentami aplikacji.
     - **animation/**: Komponenty związane z animacjami.
+      - **chain/**: Komponenty związane z animacjami z użyciem useChain().
+      - **interactive/**: Komponenty związane z interaktywnymi animacjami.
+      - **scroll/**: Komponenty związane z animacjami związanymi ze scrollowaniem strony.
+      - **useCases/**: Komponenty związane z przykładowymi zastosowaniami animacji.
     - **common/**: Wspólne komponenty używane w różnych miejscach aplikacji.
   - **data/**: Katalog z danymi aplikacji.
     - **tabs.ts**: Dane dotyczące zakładek nawigacyjnych.
@@ -51,6 +55,78 @@ Projekt **"Animation App"** demonstruje różne techniki animacji w aplikacjach 
 - **tsconfig.json**: Główna konfiguracja TypeScript.
 - **tsconfig.node.json**: Konfiguracja TypeScript dla narzędzi Node.js.
 - **vite.config.ts**: Konfiguracja Vite.
+
+## Komponenty
+
+### Common
+
+#### `Button`
+Plik: [`src/components/common/Button.tsx`](src/components/common/Button.tsx)
+Opis: Komponent przycisku z różnymi typami stylów, takimi jak `Neutral`, `Primary`, `Secondary`, `Accent`, `Ghost`, i `Link`.
+
+#### `NavBar`
+Plik: [`src/components/common/NavBar.tsx`](src/components/common/NavBar.tsx)
+Opis: Komponent nawigacji, który zawiera elementy nawigacyjne oraz kontroler motywu.
+
+#### `ThemeController`
+Plik: [`src/components/common/ThemeController.tsx`](src/components/common/ThemeController.tsx)
+Opis: Komponent kontrolera motywu, który pozwala użytkownikowi na zmianę motywu aplikacji poprzez rozwijane menu.
+
+#### `Footer`
+Plik: [`src/components/common/Footer.tsx`](src/components/common/Footer.tsx)
+Opis: Komponent stopki.
+
+### Chain
+
+#### `ChainTypingAnimation`
+Plik: [`src/components/animation/chain/ChainTypingAnimation.tsx`](src/components/animation/chain/ChainTypingAnimation.tsx)
+Opis: Komponent chain animation, który pokazuje animację wpisywania tekstu i rysowanie siatki.
+
+#### `ChainSwipeAnimation`
+Plik: [`src/components/animation/chain/ChainSwipeAnimation.tsx`](src/components/animation/chain/ChainSwipeAnimation.tsx)
+Opis: Komponent chain animation, który pokazuje animację otwierania i zamykania okna.
+
+### Interactive
+
+#### `DragAnimation`
+Plik: [`src/components/animation/Interactive/DragAnimation.tsx`](src/components/animation/Interactive/DragAnimation.tsx)
+Opis: Komponent animacji przeciągania, który pozwala użytkownikowi na przeciąganie elementów po ekranie.
+
+#### `HoverAnimation`
+Plik: [`src/components/animation/Interactive/HoverAnimation.tsx`](src/components/animation/Interactive/HoverAnimation.tsx)
+Opis: Komponent animacji najechania, który zmienia styl elementu, gdy użytkownik najeżdża na niego myszką.
+
+#### `DoubleClickAnimation`
+Plik: [`src/components/animation/Interactive/DoubleClickAnimation.tsx`](src/components/animation/Interactive/DoubleClickAnimation.tsx)
+Opis: Komponent animacji podwójnego kliknięcia, który reaguje na podwójne kliknięcie użytkownika.
+
+### Scroll
+
+#### `ParallaxAnimation`
+Plik: [`src/components/animation/scroll/ParallaxAnimation.tsx`](src/components/animation/scroll/ParallaxAnimation.tsx)
+Opis: Komponent animacji paralaksy, który tworzy efekt głębi poprzez różne prędkości przewijania warstw.
+
+#### `ShowOnScroll`
+Plik: [`src/components/animation/scroll/ShowOnScroll.tsx`](src/components/animation/scroll/ShowOnScroll.tsx)
+Opis: Komponent animacji, który pokazuje elementy podczas przewijania strony gdy obiekt staje się widoczny na stronie.
+
+### UseCases
+
+#### `TypingAnimation`
+Plik: [`src/components/animation/useCases/TypingAnimation.tsx`](src/components/animation/useCases/TypingAnimation.tsx)
+Opis: Komponent animacji pisania, który symuluje efekt pisania tekstu na ekranie, idealny do prezentacji dynamicznie zmieniających się treści.
+
+#### `RouterAnimationDesc`
+Plik: [`src/components/animation/useCases/RouterAnimationDesc.tsx`](src/components/animation/useCases/RouterAnimationDesc.tsx)
+Opis: Komponent opisujący animacje przejść między stronami, ich zastosowanie i korzyści.
+
+#### `LikeAnimation`
+Plik: [`src/components/animation/useCases/LikeAnimation.tsx`](src/components/animation/useCases/LikeAnimation.tsx)
+Opis: Komponent animacji polubienia, który dodaje przyjemny efekt wizualny podczas interakcji użytkownika.
+
+#### `ProgressBarAnimation`
+Plik: [`src/components/animation/useCases/ProgressBarAnimation.tsx`](src/components/animation/useCases/ProgressBarAnimation.tsx)
+Opis: Komponent animacji paska postępu, który dynamicznie zmienia szerokość w zależności od wartości postępu.
 
 ## Instalacja
 
