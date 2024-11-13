@@ -149,6 +149,10 @@ Aby uruchomić projekt lokalnie, wykonaj poniższe kroki:
     npm run dev
     ```
 
+5. Jeśli css się nie ładuje (opcjonalne)
+    ```sh
+    npx tailwindcss -i ./src/index.css -o ./src/main.css --watch
+    ```
 
 
 # Pliki Konfiguracyjne
