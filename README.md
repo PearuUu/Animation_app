@@ -132,6 +132,12 @@ Opis: Komponent animacji paska postępu, który dynamicznie zmienia szerokość 
 
 Aby uruchomić projekt lokalnie, wykonaj poniższe kroki:
 
+0. Rekomendowana wersja node.js
+  ```
+  v22
+  np v22.9.0
+  ```
+
 1. Sklonuj repozytorium:
    ```sh
    git clone <URL_REPOZYTORIUM>
